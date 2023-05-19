@@ -1,0 +1,87 @@
+pptr->balance = 0;
+
+                        aptr->balance = -1;
+
+                        break;
+
+                case 0:       
+
+                        pptr->balance = 0;
+
+                        aptr->balance = 0;
+
+                }
+
+                bptr->balance = 0;
+
+                pptr->rchild = RotateRight(aptr);
+
+                pptr = RotateLeft(pptr);
+
+        }
+
+        return pptr;
+
+}
+
+struct node *RotateLeft(struct node *pptr)
+
+{
+
+        struct node *aptr;
+
+        aptr = pptr->rchild; 
+
+        pptr->rchild = aptr->lchild; 
+
+        aptr->lchild = pptr;  
+
+        return aptr;  
+
+}
+
+struct node *RotateRight(struct node *pptr)
+
+{
+
+        struct node *aptr;
+
+        aptr = pptr->lchild;
+
+        pptr->lchild = aptr->rchild;
+
+        aptr->rchild = pptr;                 
+
+        return aptr; 
+
+}
+
+void display(struct node *ptr,int level)
+
+{
+
+        int i;
+
+        if(ptr == NULL )
+
+                return;
+
+        else
+
+    {
+
+                display(ptr->rchild, level+1);
+
+                printf("\n");
+
+                for (i=0; i<level; i++)
+
+                        printf("    ");
+
+                printf("%d", ptr->info);
+
+                display(ptr->lchild, level+1);
+
+        }
+
+}
